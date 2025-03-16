@@ -1,0 +1,13 @@
+{
+    "general": {
+      "menu": "Menu"
+    },
+    "layout": {
+      "cart": {
+        "title": "CART"
+      },
+      "customer": {
+        "account": "ACCOUNT"
+      }
+    }
+  }

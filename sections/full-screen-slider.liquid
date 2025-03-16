@@ -1,0 +1,271 @@
+<div class="slider-wrapper absolute top-0 left-0 w-full h-screen overflow-hidden" style="z-index: -1;">
+  <div class="slides-container h-full relative" id="slider-container">
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' %}
+        <div class="slide w-full h-full absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out {% if forloop.first %}active opacity-100{% endif %}" 
+             data-index="{{ forloop.index0 }}" 
+             {{ block.shopify_attributes }}>
+          <div class="hidden md:block h-full w-full">
+            {% if block.settings.image_desktop != blank %}
+              <img 
+                src="{{ block.settings.image_desktop | img_url: 'master' }}" 
+                alt="{{ block.settings.image_desktop.alt | escape }}" 
+                width="1920" 
+                height="1080" 
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" 
+                class="w-full h-full object-cover">
+            {% else %}
+              <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">{{ 'image' | placeholder_svg_tag: 'w-full h-64' }}</span>
+              </div>
+            {% endif %}
+          </div>
+          <div class="md:hidden h-full w-full">
+            {% if block.settings.image_mobile != blank %}
+              <img 
+                src="{{ block.settings.image_mobile | img_url: 'master' }}" 
+                alt="{{ block.settings.image_mobile.alt | escape }}" 
+                width="800" 
+                height="1200" 
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" 
+                class="w-full h-full object-cover">
+            {% else %}
+              {% if block.settings.image_desktop != blank %}
+                <img 
+                  src="{{ block.settings.image_desktop | img_url: 'master' }}" 
+                  alt="{{ block.settings.image_desktop.alt | escape }}" 
+                  width="800" 
+                  height="1200" 
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" 
+                  class="w-full h-full object-cover">
+              {% else %}
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-500">{{ 'image' | placeholder_svg_tag: 'w-full h-64' }}</span>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Indicatori slider - Migliorati per visibilità -->
+  <div class="slider-indicators absolute left-1/2 bottom-5 transform -translate-x-1/2 flex items-center gap-4 z-10">
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' %}
+        <div class="indicator-container">
+          <div class="indicator-dot rounded-full border border-white opacity-40 relative overflow-hidden cursor-pointer" data-index="{{ forloop.index0 }}">
+            <div class="indicator-fill absolute top-0 left-0 w-full h-full bg-white transform scale-x-0 origin-left"></div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .slider-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+  }
+  
+  .slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  /* Indicatori migliorati */
+  .slider-indicators {
+    z-index: 100 !important; /* Forza un z-index alto */
+    bottom: 20px !important; /* Garantisce posizionamento a 20px dal fondo */
+    pointer-events: auto; /* Assicura che si possa cliccare */
+  }
+  
+  .indicator-dot {
+    width: 8px; /* Aumentato per debug, poi ridurre a 2px */
+    height: 8px; /* Aumentato per debug, poi ridurre a 2px */
+    border-radius: 50%;
+    border: 1px solid #fff;
+    opacity: 0.6; /* Aumentata leggermente l'opacità */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Aggiunto un'ombra per migliorare visibilità */
+  }
+  
+  .indicator-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 5s linear;
+  }
+  
+  .indicator-active .indicator-fill {
+    transform: scaleX(1);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sliderContainer = document.getElementById('slider-container');
+    if (!sliderContainer) return;
+    
+    const slides = sliderContainer.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator-dot');
+    const slideCount = slides.length;
+    let currentSlide = 0;
+    let slideInterval;
+    let animationTimeout;
+
+    // Debug log per verificare il caricamento
+    console.log('Slider inizializzato. Slide totali:', slideCount);
+    console.log('Indicatori trovati:', indicators.length);
+    
+    // Inizializza lo slider
+    function initSlider() {
+      if (slideCount <= 0) return;
+      
+      // Attiva il primo indicatore
+      setActiveIndicator(currentSlide);
+      
+      // Avvia il timer per il cambio automatico delle slide
+      startSlideTimer();
+    }
+    
+    // Imposta l'indicatore attivo e avvia l'animazione di riempimento
+    function setActiveIndicator(index) {
+      // Rimuovi la classe attiva da tutti gli indicatori
+      indicators.forEach(indicator => {
+        indicator.classList.remove('indicator-active');
+        indicator.querySelector('.indicator-fill').style.transform = 'scaleX(0)';
+      });
+      
+      // Attiva l'indicatore corrente
+      const activeIndicator = indicators[index];
+      if (activeIndicator) {
+        activeIndicator.classList.add('indicator-active');
+        
+        // Forza un reflow per assicurarsi che la transizione venga applicata
+        void activeIndicator.offsetWidth;
+        
+        // Attiva l'animazione di riempimento
+        activeIndicator.querySelector('.indicator-fill').style.transform = 'scaleX(1)';
+      }
+    }
+    
+    // Passa alla slide successiva
+    function nextSlide() {
+      // Rimuovi la classe active dalla slide corrente
+      slides[currentSlide].classList.remove('active');
+      slides[currentSlide].classList.remove('opacity-100');
+      
+      // Incrementa l'indice della slide
+      currentSlide = (currentSlide + 1) % slideCount;
+      
+      // Attiva la nuova slide
+      slides[currentSlide].classList.add('active');
+      slides[currentSlide].classList.add('opacity-100');
+      
+      // Aggiorna l'indicatore attivo
+      setActiveIndicator(currentSlide);
+    }
+    
+    // Avvia il timer per il cambio automatico delle slide
+    function startSlideTimer() {
+      clearTimeout(animationTimeout);
+      clearInterval(slideInterval);
+      
+      // Cambio slide ogni 5 secondi
+      slideInterval = setInterval(function() {
+        nextSlide();
+      }, 5000);
+    }
+    
+    // Click sull'indicatore per cambiare slide
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', function() {
+        if (index !== currentSlide) {
+          // Rimuovi la classe active dalla slide corrente
+          slides[currentSlide].classList.remove('active');
+          slides[currentSlide].classList.remove('opacity-100');
+          
+          // Imposta la nuova slide corrente
+          currentSlide = index;
+          
+          // Attiva la nuova slide
+          slides[currentSlide].classList.add('active');
+          slides[currentSlide].classList.add('opacity-100');
+          
+          // Aggiorna l'indicatore attivo
+          setActiveIndicator(currentSlide);
+          
+          // Riavvia il timer
+          startSlideTimer();
+        }
+      });
+    });
+    
+    // Inizializza lo slider
+    initSlider();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Full Screen Slider",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Full Screen Slider",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

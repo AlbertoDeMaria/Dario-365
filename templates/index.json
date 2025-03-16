@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "full-screen-slider": {
+      "type": "full-screen-slider",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "",
+            "image_mobile": ""
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "",
+            "image_mobile": ""
+          }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "",
+            "image_mobile": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "slide-2",
+        "slide-3"
+      ],
+      "settings": {}
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu_icon_width_desktop": 24,
+        "menu_icon_width_mobile": 20,
+        "logo_width_desktop": 160,
+        "logo_width_mobile": 140,
+        "hide_cart_mobile": false,
+        "hide_account_mobile": false
+      }
+    }
+  },
+  "order": [
+    "full-screen-slider",
+    "header"
+  ]
+}

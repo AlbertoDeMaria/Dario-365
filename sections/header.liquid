@@ -1,0 +1,186 @@
+<header class="w-full py-4 px-6 md:px-8 bg-transparent transition-colors duration-300 ease-in-out hover:bg-white" id="site-header">
+  <div class="grid grid-cols-[0.5fr_2fr_0.5fr] md:grid-cols-3 items-center">
+    <!-- Menu Icon (Left) -->
+    <div class="flex items-center">
+      <button class="menu-toggle focus:outline-none text-white header-element" aria-expanded="false" aria-controls="main-menu">
+        {% if section.settings.menu_icon != blank %}
+          <img
+            src="{{ section.settings.menu_icon | img_url: 'master' }}"
+            alt="{{ 'general.menu' | t }}"
+            width="{{ section.settings.menu_icon_width_desktop }}"
+            height="auto"
+            class="hidden md:block filter-white"
+            loading="lazy">
+          <img
+            src="{{ section.settings.menu_icon | img_url: 'master' }}"
+            alt="{{ 'general.menu' | t }}"
+            width="{{ section.settings.menu_icon_width_mobile }}"
+            height="auto"
+            class="md:hidden filter-white"
+            loading="lazy">
+        {% else %}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="header-svg">
+            <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        {% endif %}
+      </button>
+    </div>
+
+    <!-- Logo (Center) -->
+    <div class="flex justify-center logo-container">
+      {% if section.settings.logo != blank %}
+        <a href="/" class="block text-center">
+          <img
+            src="{{ section.settings.logo | img_url: 'master' }}"
+            alt="{{ shop.name }}"
+            width="{{ section.settings.logo_width_desktop }}"
+            height="auto"
+            class="logo hidden md:block filter-white"
+            loading="lazy">
+          <img
+            src="{{ section.settings.logo | img_url: 'master' }}"
+            alt="{{ shop.name }}"
+            width="{{ section.settings.logo_width_mobile }}"
+            height="auto"
+            class="logo block md:hidden filter-white"
+            loading="lazy">
+        </a>
+      {% else %}
+        <a href="/" class="text-2xl font-bold text-white header-element">{{ shop.name }}</a>
+      {% endif %}
+    </div>
+
+    <!-- Cart and Account (Right) -->
+    <div class="flex justify-end items-center gap-6">
+      <a href="/cart" class="text-[10px] font-bold tracking-wide text-white hover:text-black hover:underline header-element {% if section.settings.hide_cart_mobile %}hidden md:inline-block{% endif %}">
+        {{ 'layout.cart.title' | t }}({{ cart.item_count }})
+      </a>
+      <a href="/account" class="text-[10px] font-bold tracking-wide text-white hover:text-black hover:underline header-element {% if section.settings.hide_account_mobile %}hidden md:inline-block{% endif %}">
+        {{ 'layout.customer.account' | t }}
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  #site-header {
+    transition: background-color 0.3s ease;
+  }
+  
+  #site-header .header-element {
+    transition: color 0.3s ease;
+  }
+  
+  #site-header .header-svg {
+    transition: stroke 0.3s ease;
+    stroke: white;
+  }
+  
+  #site-header:hover .header-element {
+    color: #000000;
+  }
+  
+  #site-header:hover .header-svg {
+    stroke: #000000;
+  }
+  
+  .filter-white {
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+  
+  #site-header:hover .filter-white {
+    filter: none;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .logo-container img.logo {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "menu_icon",
+      "label": "Menu Icon"
+    },
+    {
+      "type": "range",
+      "id": "menu_icon_width_desktop",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Menu Icon Width (Desktop)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "menu_icon_width_mobile",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Menu Icon Width (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "min": 60,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Width (Desktop)",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "min": 40,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Width (Mobile)",
+      "default": 140
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_cart_mobile",
+      "label": "Hide Cart on Mobile",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_account_mobile",
+      "label": "Hide Account on Mobile",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}
