@@ -16,8 +16,7 @@
           "type": "slide",
           "settings": {
             "media_type": "video",
-            "video_url": "https://www.youtube.com/watch?v=_xSSjuQH6HU&pp=ygUNZGFyaW8gZG9uZG9saQ%3D%3D",
-            "video_alt": ""
+            "video_link": "https://www.youtube.com/watch?v=_xSSjuQH6HU&pp=ygUNZGFyaW8gZG9uZG9saQ%3D%3D"
           }
         }
       },
