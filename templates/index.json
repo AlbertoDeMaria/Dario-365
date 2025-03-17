@@ -27,6 +27,7 @@
     },
     "maruqee_tMd6w7": {
       "type": "maruqee",
+      "disabled": true,
       "settings": {
         "text": "100% DI SCONTO CON IL CODICE \"365\"",
         "font_size": 12,
@@ -42,6 +43,7 @@
     },
     "product_grid_9XKMfN": {
       "type": "product-grid",
+      "disabled": true,
       "settings": {
         "title": "",
         "collection": "frontpage",
@@ -58,6 +60,7 @@
     },
     "img_full_width_84PKyJ": {
       "type": "img-full-width",
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/WhatsApp_Image_2022-10-21_at_19.17.26-3.jpg",
         "desktop_height": 500,
