@@ -31,6 +31,12 @@
         "footer_text": "© 2025, Store One More Time BUG 301 SRL, P.I. 12690450965",
         "enable_menu": true,
         "menu": "footer",
+        "footer_text_size_mobile": 10,
+        "footer_text_size_desktop": 10,
+        "footer_font_weight": 300,
+        "menu_text_size_mobile": 10,
+        "menu_text_size_desktop": 10,
+        "menu_font_weight": 300,
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false
