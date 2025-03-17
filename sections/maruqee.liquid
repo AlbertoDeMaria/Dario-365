@@ -1,0 +1,177 @@
+{% schema %}
+    {
+      "name": "Marquee",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Testo",
+          "default": "Testo scorrevole"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Dimensione testo",
+          "min": 12,
+          "max": 72,
+          "step": 1,
+          "default": 24,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Peso testo",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normale"
+            },
+            {
+              "value": "bold",
+              "label": "Grassetto"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Colore sfondo",
+          "default": "#f7f7f7"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Colore testo",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "padding_top_desktop",
+          "label": "Padding superiore desktop",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 20,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom_desktop",
+          "label": "Padding inferiore desktop",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 20,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "padding_top_mobile",
+          "label": "Padding superiore mobile",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 15,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom_mobile",
+          "label": "Padding inferiore mobile",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 15,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "animation_speed",
+          "label": "Velocità animazione",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 30,
+          "unit": "s"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Marquee",
+          "category": "Testo"
+        }
+      ]
+    }
+    {% endschema %}
+    
+    <style>
+      .marquee-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+      }
+      
+      .marquee {
+        white-space: nowrap;
+        display: inline-block;
+        animation-name: marquee;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      
+      .marquee span {
+        display: inline-block;
+        padding-right: 50px;
+      }
+      
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      
+      @media screen and (max-width: 749px) {
+        .marquee-section {
+          padding-top: {{ section.settings.padding_top_mobile }}px;
+          padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+        }
+      }
+      
+      @media screen and (min-width: 750px) {
+        .marquee-section {
+          padding-top: {{ section.settings.padding_top_desktop }}px;
+          padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+        }
+      }
+    </style>
+    
+    <div class="marquee-section" style="background-color: {{ section.settings.background_color }};">
+      <div class="marquee-wrapper">
+        <div class="marquee" style="animation-duration: {{ section.settings.animation_speed }}s; font-size: {{ section.settings.font_size }}px; font-weight: {{ section.settings.font_weight }}; color: {{ section.settings.text_color }};">
+          {% for i in (1..10) %}
+            <span>{{ section.settings.text }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const marqueeElements = document.querySelectorAll('.marquee');
+        
+        marqueeElements.forEach(function(marquee) {
+          const originalWidth = marquee.offsetWidth;
+          const cloneContent = marquee.innerHTML;
+          
+          // Clone enough content to ensure continuous animation
+          while (marquee.offsetWidth < window.innerWidth * 2) {
+            marquee.innerHTML += cloneContent;
+          }
+        });
+      });
+    </script>
