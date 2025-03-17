@@ -38,9 +38,9 @@
         "menu_text_size_mobile": 16,
         "menu_text_size_desktop": 16,
         "menu_font_weight": 300,
-        "show_payment_icons": false,
-        "show_locale_selector": false,
-        "show_currency_selector": false
+        "show_payment_icons": true,
+        "show_locale_selector": true,
+        "show_currency_selector": true
       }
     }
   },
