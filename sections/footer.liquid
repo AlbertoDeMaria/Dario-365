@@ -21,15 +21,6 @@
                    class="hover:underline md:text-custom-menu-desktop">
                   {{ link.title }}
                 </a>
-                {% unless forloop.last %}
-                  <span 
-                    style="font-family: 'Montserrat', sans-serif; 
-                           font-size: {{ section.settings.menu_text_size_mobile }}px;
-                           font-weight: {{ section.settings.menu_font_weight }};
-                           line-height: 20px;
-                           color: oklab(0.41233 -0.00633241 -0.0270027);"
-                    class="mx-2 md:text-custom-menu-desktop">-</span>
-                {% endunless %}
               </li>
             {% endfor %}
           </ul>
