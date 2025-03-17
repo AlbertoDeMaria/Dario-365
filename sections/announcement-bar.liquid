@@ -1,6 +1,162 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Barra di Annuncio",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Testo dell'annuncio",
+      "default": {
+        "it": "Annuncia qualcosa qui"
+      }
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Colore di sfondo",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Colore del testo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_y_desktop",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding verticale (desktop)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_y_mobile",
+      "min": 2,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding verticale (mobile)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Dimensione testo (desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Dimensione testo (mobile)",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra di Annuncio",
+      "category": "Header"
+    }
+  ]
+}
 {% endschema %}
+
+<style>
+  .announcement-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .announcement-bar__link {
+    display: block;
+    width: 100%;
+  }
+  
+  .announcement-bar__text {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .announcement-bar--mobile {
+      display: flex;
+    }
+  }
+</style>
+
+<div class="announcement-bar" 
+  style="background-color: {{ section.settings.background_color }}; 
+         padding-top: {{ section.settings.padding_y_desktop }}px; 
+         padding-bottom: {{ section.settings.padding_y_desktop }}px;"
+  data-section-id="{{ section.id }}"
+  data-section-type="announcement-bar">
+  {% if section.settings.link != blank %}
+    <a href="{{ section.settings.link }}" class="announcement-bar__link">
+      <div class="announcement-bar__text" 
+        style="color: {{ section.settings.text_color }}; 
+              font-size: {{ section.settings.text_size_desktop }}px;">
+        {{ section.settings.text }}
+      </div>
+    </a>
+  {% else %}
+    <div class="announcement-bar__text" 
+      style="color: {{ section.settings.text_color }}; 
+            font-size: {{ section.settings.text_size_desktop }}px;">
+      {{ section.settings.text }}
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function updateAnnouncementBarStyles() {
+      const announcementBar = document.querySelector('[data-section-type="announcement-bar"]');
+      if (!announcementBar) return;
+      
+      const isMobile = window.innerWidth < 768;
+      const sectionId = announcementBar.getAttribute('data-section-id');
+      
+      if (isMobile) {
+        announcementBar.style.paddingTop = '{{ section.settings.padding_y_mobile }}px';
+        announcementBar.style.paddingBottom = '{{ section.settings.padding_y_mobile }}px';
+        
+        const textElement = announcementBar.querySelector('.announcement-bar__text');
+        if (textElement) {
+          textElement.style.fontSize = '{{ section.settings.text_size_mobile }}px';
+        }
+      } else {
+        announcementBar.style.paddingTop = '{{ section.settings.padding_y_desktop }}px';
+        announcementBar.style.paddingBottom = '{{ section.settings.padding_y_desktop }}px';
+        
+        const textElement = announcementBar.querySelector('.announcement-bar__text');
+        if (textElement) {
+          textElement.style.fontSize = '{{ section.settings.text_size_desktop }}px';
+        }
+      }
+    }
+    
+    updateAnnouncementBarStyles();
+    
+    window.addEventListener('resize', function() {
+      updateAnnouncementBarStyles();
+    });
+  });
+</script>
