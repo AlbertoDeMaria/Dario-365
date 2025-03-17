@@ -1,34 +1,38 @@
-<header class="w-full py-4 px-6 md:px-8 bg-transparent transition-colors duration-300 ease-in-out hover:bg-white" id="site-header">
-  <div class="grid grid-cols-[0.5fr_2fr_0.5fr] md:grid-cols-3 items-center">
-    <!-- Menu Icon (Left) -->
+<header class="w-full py-4 px-6 md:px-8 bg-transparent" id="site-header">
+  <div class="grid grid-cols-[0.5fr_2fr_0.5fr] md:grid-cols-[1fr_1fr_1fr] items-center">
     <div class="flex items-center">
-      <button class="menu-toggle focus:outline-none text-white header-element" aria-expanded="false" aria-controls="main-menu">
+      <button class="menu-toggle focus:outline-none text-black md:hidden" aria-expanded="false" aria-controls="mobile-menu">
         {% if section.settings.menu_icon != blank %}
-          <img
-            src="{{ section.settings.menu_icon | img_url: 'master' }}"
-            alt="{{ 'general.menu' | t }}"
-            width="{{ section.settings.menu_icon_width_desktop }}"
-            height="auto"
-            class="hidden md:block filter-white"
-            loading="lazy">
           <img
             src="{{ section.settings.menu_icon | img_url: 'master' }}"
             alt="{{ 'general.menu' | t }}"
             width="{{ section.settings.menu_icon_width_mobile }}"
             height="auto"
-            class="md:hidden filter-white"
             loading="lazy">
         {% else %}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="header-svg">
+          <svg width="{{ section.settings.menu_icon_width_mobile }}" height="{{ section.settings.menu_icon_width_mobile }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         {% endif %}
       </button>
+      
+      <nav class="hidden md:block desktop-menu">
+        {% if section.settings.main_menu != blank %}
+          <ul class="flex items-center space-x-6">
+            {% for link in linklists[section.settings.main_menu].links %}
+              <li>
+                <a href="{{ link.url }}" class="text-sm font-medium hover:text-gray-600 transition-colors">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </nav>
     </div>
 
-    <!-- Logo (Center) -->
     <div class="flex justify-center logo-container">
       {% if section.settings.logo != blank %}
         <a href="/" class="block text-center">
@@ -37,64 +41,75 @@
             alt="{{ shop.name }}"
             width="{{ section.settings.logo_width_desktop }}"
             height="auto"
-            class="logo hidden md:block filter-white"
+            class="logo hidden md:block"
             loading="lazy">
           <img
             src="{{ section.settings.logo | img_url: 'master' }}"
             alt="{{ shop.name }}"
             width="{{ section.settings.logo_width_mobile }}"
             height="auto"
-            class="logo block md:hidden filter-white"
+            class="logo block md:hidden"
             loading="lazy">
         </a>
       {% else %}
-        <a href="/" class="text-2xl font-bold text-white header-element">{{ shop.name }}</a>
+        <a href="/" class="text-2xl font-bold text-black">{{ shop.name }}</a>
       {% endif %}
     </div>
 
-    <!-- Cart and Account (Right) -->
     <div class="flex justify-end items-center gap-6">
-      <a href="/cart" class="text-[10px] font-bold tracking-wide text-white hover:text-black hover:underline header-element {% if section.settings.hide_cart_mobile %}hidden md:inline-block{% endif %}">
-        {{ 'layout.cart.title' | t }}({{ cart.item_count }})
+      <a href="/cart" class="relative inline-flex items-center" aria-label="{{ 'layout.cart.title' | t }}">
+        <div class="hidden md:block" style="width: {{ section.settings.menu_icon_width_desktop }}px; height: {{ section.settings.menu_icon_width_desktop }}px;">
+          {% render 'icon-cart' %}
+        </div>
+        <div class="md:hidden" style="width: {{ section.settings.menu_icon_width_mobile }}px; height: {{ section.settings.menu_icon_width_mobile }}px;">
+          {% render 'icon-cart' %}
+        </div>
+        {% if cart.item_count > 0 %}
+          <span class="cart-count ml-1 text-xs">{{ cart.item_count }}</span>
+        {% endif %}
       </a>
-      <a href="/account" class="text-[10px] font-bold tracking-wide text-white hover:text-black hover:underline header-element {% if section.settings.hide_account_mobile %}hidden md:inline-block{% endif %}">
-        {{ 'layout.customer.account' | t }}
+      <a href="/account" class="inline-flex items-center" aria-label="{{ 'layout.customer.account' | t }}">
+        <div class="hidden md:block" style="width: {{ section.settings.menu_icon_width_desktop }}px; height: {{ section.settings.menu_icon_width_desktop }}px;">
+          {% render 'icon-account' %}
+        </div>
+        <div class="md:hidden" style="width: {{ section.settings.menu_icon_width_mobile }}px; height: {{ section.settings.menu_icon_width_mobile }}px;">
+          {% render 'icon-account' %}
+        </div>
       </a>
     </div>
   </div>
+
+  <div id="mobile-menu" class="mobile-menu hidden pt-4">
+    {% if section.settings.main_menu != blank %}
+      <ul class="space-y-4 pb-4">
+        {% for link in linklists[section.settings.main_menu].links %}
+          <li>
+            <a href="{{ link.url }}" class="block py-2 text-lg font-medium">
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
 </header>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
+
 <style>
-  #site-header {
-    transition: background-color 0.3s ease;
-  }
-  
-  #site-header .header-element {
-    transition: color 0.3s ease;
-  }
-  
-  #site-header .header-svg {
-    transition: stroke 0.3s ease;
-    stroke: white;
-  }
-  
-  #site-header:hover .header-element {
-    color: #000000;
-  }
-  
-  #site-header:hover .header-svg {
-    stroke: #000000;
-  }
-  
-  .filter-white {
-    filter: brightness(0) invert(1);
-    transition: filter 0.3s ease;
-  }
-  
-  #site-header:hover .filter-white {
-    filter: none;
-  }
-  
   @media screen and (max-width: 767px) {
     .logo-container {
       display: flex;
@@ -107,6 +122,16 @@
       height: auto;
     }
   }
+  
+  .cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mobile-menu {
+    border-top: 1px solid #eee;
+  }
 </style>
 
 {% schema %}
@@ -116,7 +141,7 @@
     {
       "type": "image_picker",
       "id": "menu_icon",
-      "label": "Menu Icon"
+      "label": "Icona menu"
     },
     {
       "type": "range",
@@ -125,7 +150,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Menu Icon Width (Desktop)",
+      "label": "Larghezza icona menu (Desktop)",
       "default": 24
     },
     {
@@ -135,7 +160,7 @@
       "max": 40,
       "step": 1,
       "unit": "px",
-      "label": "Menu Icon Width (Mobile)",
+      "label": "Larghezza icona menu (Mobile)",
       "default": 20
     },
     {
@@ -150,7 +175,7 @@
       "max": 300,
       "step": 10,
       "unit": "px",
-      "label": "Logo Width (Desktop)",
+      "label": "Larghezza logo (Desktop)",
       "default": 160
     },
     {
@@ -160,20 +185,14 @@
       "max": 300,
       "step": 10,
       "unit": "px",
-      "label": "Logo Width (Mobile)",
+      "label": "Larghezza logo (Mobile)",
       "default": 140
     },
     {
-      "type": "checkbox",
-      "id": "hide_cart_mobile",
-      "label": "Hide Cart on Mobile",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "hide_account_mobile",
-      "label": "Hide Account on Mobile",
-      "default": false
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Menu principale",
+      "default": "main-menu"
     }
   ],
   "presets": [
