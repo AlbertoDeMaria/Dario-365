@@ -25,37 +25,6 @@
       ],
       "settings": {}
     },
-    "maruqee_djQfiw": {
-      "type": "maruqee",
-      "settings": {
-        "text": "100% DI SCONTO CON IL CODICE \"365\"",
-        "font_size": 14,
-        "font_weight": "normal",
-        "background_color": "#0029d6",
-        "text_color": "#ffffff",
-        "padding_top_desktop": 15,
-        "padding_bottom_desktop": 15,
-        "padding_top_mobile": 10,
-        "padding_bottom_mobile": 10,
-        "animation_speed": 95
-      }
-    },
-    "product_grid_eTgqFJ": {
-      "type": "product-grid",
-      "settings": {
-        "title": "",
-        "collection": "frontpage",
-        "product_limit": 16,
-        "padding_top_mobile": 20,
-        "padding_bottom_mobile": 20,
-        "padding_left_mobile": 15,
-        "padding_right_mobile": 15,
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_left_desktop": 20,
-        "padding_right_desktop": 20
-      }
-    },
     "footer_EJnmpq": {
       "type": "footer",
       "settings": {
@@ -82,8 +51,6 @@
   },
   "order": [
     "full-screen-slider",
-    "maruqee_djQfiw",
-    "product_grid_eTgqFJ",
     "footer_EJnmpq"
   ]
 }
