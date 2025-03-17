@@ -48,11 +48,20 @@
               {% endif %}
             </div>
           {% elsif block.settings.media_type == 'video' %}
-            <div class="iframe-container w-full h-full">
-              {% if block.settings.video_iframe != blank %}
-                <div class="video-wrapper w-full h-full">
-                  {{ block.settings.video_iframe }}
-                </div>
+            <div class="video-container w-full h-full">
+              {% if block.settings.video_url != blank and block.settings.video_poster != blank %}
+                <video 
+                  id="slide-video-{{ forloop.index }}" 
+                  class="w-full h-full object-cover" 
+                  loop 
+                  autoplay 
+                  muted 
+                  playsinline 
+                  poster="{{ block.settings.video_poster | img_url: 'master' }}" 
+                  preload="auto" 
+                  src="{{ block.settings.video_url }}"
+                  width="100%">
+                </video>
               {% endif %}
             </div>
           {% endif %}
@@ -98,27 +107,11 @@
     z-index: 1;
   }
   
-  .iframe-container {
+  .video-container {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-  }
-  
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
   }
   
   .slider-indicators {
@@ -269,10 +262,15 @@
           "label": "Immagine Mobile"
         },
         {
-          "type": "html",
-          "id": "video_iframe",
-          "label": "Codice iframe video",
-          "info": "Inserisci il codice completo dell'iframe (es. <iframe src=\"https://www.youtube.com/embed/CODICE?autoplay=1&mute=1&loop=1&playlist=CODICE\"></iframe>)"
+          "type": "url",
+          "id": "video_url",
+          "label": "URL Video MP4"
+        },
+        {
+          "type": "image_picker",
+          "id": "video_poster",
+          "label": "Immagine anteprima video",
+          "info": "Mostrata durante il caricamento del video"
         }
       ]
     }
