@@ -49,45 +49,16 @@
             </div>
           {% elsif block.settings.media_type == 'video' %}
             <div class="video-container w-full h-full">
-              {% if block.settings.video_url != blank %}
-                {% if block.settings.video_url contains 'youtube.com' or block.settings.video_url contains 'youtu.be' %}
-                  <div class="w-full h-full">
-                    <iframe 
-                      width="100%" 
-                      height="100%" 
-                      src="{{ block.settings.video_url | replace: 'watch?v=', 'embed/' | replace: 'youtu.be/', 'youtube.com/embed/' }}" 
-                      title="{{ block.settings.video_alt }}"
-                      frameborder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                      allowfullscreen 
-                      class="absolute inset-0 w-full h-full object-cover">
-                    </iframe>
-                  </div>
-                {% elsif block.settings.video_url contains 'vimeo.com' %}
-                  <div class="w-full h-full">
-                    <iframe 
-                      src="{{ block.settings.video_url | replace: 'vimeo.com/', 'player.vimeo.com/video/' }}?background=1&autoplay=1&loop=1&byline=0&title=0" 
-                      width="100%" 
-                      height="100%" 
-                      frameborder="0" 
-                      webkitallowfullscreen 
-                      mozallowfullscreen 
-                      allowfullscreen 
-                      class="absolute inset-0 w-full h-full object-cover">
-                    </iframe>
-                  </div>
-                {% else %}
-                  <video 
-                    src="{{ block.settings.video_url }}" 
-                    width="100%" 
-                    height="100%" 
-                    class="w-full h-full object-cover" 
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline>
-                  </video>
-                {% endif %}
+              {% if block.settings.video_link != blank %}
+                <video
+                  class="w-full h-full object-cover"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="auto">
+                  <source src="{{ block.settings.video_link }}" type="video/mp4">
+                </video>
               {% endif %}
             </div>
           {% endif %}
@@ -138,17 +109,6 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-  }
-  
-  .video-container iframe,
-  .video-container video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
   }
   
   .slider-indicators {
@@ -291,26 +251,17 @@
         {
           "type": "image_picker",
           "id": "image_desktop",
-          "label": "Immagine Desktop",
-          "info": "Consigliato: 1920 x 1080 px"
+          "label": "Immagine Desktop"
         },
         {
           "type": "image_picker",
           "id": "image_mobile",
-          "label": "Immagine Mobile",
-          "info": "Consigliato: 800 x 1200 px"
-        },
-        {
-          "type": "url",
-          "id": "video_url",
-          "label": "URL Video",
-          "info": "Supporta video MP4, YouTube o Vimeo"
+          "label": "Immagine Mobile"
         },
         {
           "type": "text",
-          "id": "video_alt",
-          "label": "Testo alternativo video",
-          "default": "Video slider"
+          "id": "video_link",
+          "label": "Link video MP4"
         }
       ]
     }
