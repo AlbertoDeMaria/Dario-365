@@ -7,16 +7,28 @@
 <footer class="bg-black flex justify-center text-white py-4">
   <div class="container mx-auto px-4">
     {% if section.settings.enable_menu %}
-      <div class="menu-row mb-3">
+      <div class="menu-row" style="margin-bottom: {{ section.settings.spacing_between_rows }}px;">
         <nav class="footer-menu">
           <ul class="flex flex-wrap items-center justify-center">
             {% for link in section.settings.menu.links %}
               <li>
-                <a href="{{ link.url }}" class="font-montserrat text-[{{ section.settings.menu_text_size_mobile }}px] md:text-[{{ section.settings.menu_text_size_desktop }}px] font-[{{ section.settings.menu_font_weight }}] leading-[20px] hover:underline">
+                <a href="{{ link.url }}" 
+                   style="font-family: 'Montserrat', sans-serif; 
+                          font-size: {{ section.settings.menu_text_size_mobile }}px;
+                          font-weight: {{ section.settings.menu_font_weight }};
+                          line-height: 20px;
+                          color: oklab(0.41233 -0.00633241 -0.0270027);"
+                   class="hover:underline md:text-custom-menu-desktop">
                   {{ link.title }}
                 </a>
                 {% unless forloop.last %}
-                  <span class="mx-2 font-montserrat text-[{{ section.settings.menu_text_size_mobile }}px] md:text-[{{ section.settings.menu_text_size_desktop }}px] font-[{{ section.settings.menu_font_weight }}] leading-[20px]">-</span>
+                  <span 
+                    style="font-family: 'Montserrat', sans-serif; 
+                           font-size: {{ section.settings.menu_text_size_mobile }}px;
+                           font-weight: {{ section.settings.menu_font_weight }};
+                           line-height: 20px;
+                           color: oklab(0.41233 -0.00633241 -0.0270027);"
+                    class="mx-2 md:text-custom-menu-desktop">-</span>
                 {% endunless %}
               </li>
             {% endfor %}
@@ -27,7 +39,13 @@
     
     {% if section.settings.footer_text != blank %}
       <div class="text-row">
-        <div class="footer-text font-montserrat text-[{{ section.settings.footer_text_size_mobile }}px] md:text-[{{ section.settings.footer_text_size_desktop }}px] font-[{{ section.settings.footer_font_weight }}] leading-[20px] text-center">
+        <div style="font-family: 'Montserrat', sans-serif; 
+                    font-size: {{ section.settings.footer_text_size_mobile }}px;
+                    font-weight: {{ section.settings.footer_font_weight }};
+                    line-height: 20px;
+                    color: oklab(0.41233 -0.00633241 -0.0270027);
+                    text-align: center;"
+             class="footer-text md:text-custom-footer-desktop">
           {{ section.settings.footer_text }}
         </div>
       </div>
@@ -36,12 +54,14 @@
 </footer>
 
 <style>
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .footer-text, .footer-menu {
-    color: oklab(0.41233 -0.00633241 -0.0270027);
+  @media (min-width: 768px) {
+    .md\:text-custom-menu-desktop {
+      font-size: {{ section.settings.menu_text_size_desktop }}px;
+    }
+    
+    .md\:text-custom-footer-desktop {
+      font-size: {{ section.settings.footer_text_size_desktop }}px;
+    }
   }
 </style>
 
@@ -70,6 +90,15 @@
       "id": "menu",
       "label": "Menu footer",
       "default": "footer"
+    },
+    {
+      "type": "range",
+      "id": "spacing_between_rows",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Spazio tra le righe (px)",
+      "default": 15
     },
     {
       "type": "header",
