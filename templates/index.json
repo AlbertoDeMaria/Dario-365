@@ -25,73 +25,6 @@
       ],
       "settings": {}
     },
-    "maruqee_tMd6w7": {
-      "type": "maruqee",
-      "disabled": true,
-      "settings": {
-        "text": "100% DI SCONTO CON IL CODICE \"365\"",
-        "font_size": 12,
-        "font_weight": "bold",
-        "background_color": "#0029d6",
-        "text_color": "#ffffff",
-        "padding_top_desktop": 10,
-        "padding_bottom_desktop": 10,
-        "padding_top_mobile": 10,
-        "padding_bottom_mobile": 10,
-        "animation_speed": 50
-      }
-    },
-    "product_grid_9XKMfN": {
-      "type": "product-grid",
-      "disabled": true,
-      "settings": {
-        "title": "",
-        "collection": "frontpage",
-        "product_limit": 16,
-        "padding_top_mobile": 45,
-        "padding_bottom_mobile": 65,
-        "padding_left_mobile": 20,
-        "padding_right_mobile": 20,
-        "padding_top_desktop": 100,
-        "padding_bottom_desktop": 25,
-        "padding_left_desktop": 20,
-        "padding_right_desktop": 20
-      }
-    },
-    "img_full_width_84PKyJ": {
-      "type": "img-full-width",
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/WhatsApp_Image_2022-10-21_at_19.17.26-3.jpg",
-        "desktop_height": 500,
-        "mobile_height": 350,
-        "image_position": "center center",
-        "heading": "Segui la mia storia",
-        "heading_size": 36,
-        "heading_weight": "font-bold",
-        "heading_color": "#ffffff",
-        "text": "",
-        "text_size": 16,
-        "text_color": "#ffffff",
-        "text_align": "text-center",
-        "content_position": "items-center justify-center",
-        "content_padding": 20,
-        "overlay_color": "#000000",
-        "overlay_opacity": 25,
-        "button_text": "Instagram",
-        "button_link": "https://www.instagram.com/project365.it/tagged/",
-        "button_text_2": "TikTok",
-        "button_link_2": "https://www.tiktok.com/@dariodondoli",
-        "button_padding_x": 20,
-        "button_padding_y": 10,
-        "button_text_size": 14,
-        "button_text_color": "#ffffff",
-        "button_border_color": "#ffffff",
-        "button_border_width": 1,
-        "buttons_gap": 20,
-        "buttons_margin_top": 20
-      }
-    },
     "footer_EJnmpq": {
       "type": "footer",
       "settings": {
@@ -114,9 +47,6 @@
   },
   "order": [
     "full-screen-slider",
-    "maruqee_tMd6w7",
-    "product_grid_9XKMfN",
-    "img_full_width_84PKyJ",
     "footer_EJnmpq"
   ]
 }
