@@ -6,6 +6,29 @@
 
 <footer class="bg-white flex justify-center text-white py-4">
   <div class="container mx-auto px-4">
+    {% if section.settings.enable_social %}
+      <div class="social-row" style="margin-bottom: {{ section.settings.spacing_between_rows }}px;">
+        <div class="flex justify-center">
+          {% if section.settings.tiktok_link != blank %}
+            <a href="{{ section.settings.tiktok_link }}" target="_blank" rel="noopener" aria-label="TikTok" class="social-icon mx-2">
+              <svg width="{{ section.settings.social_icon_size }}" height="{{ section.settings.social_icon_size }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.321 5.562C18.7527 4.91179 18.4457 4.07928 18.446 3.218H14.776V15.718C14.7687 16.4347 14.4934 17.1225 14.0047 17.6363C13.516 18.15 12.8515 18.4508 12.154 18.469C10.654 18.469 9.419 17.218 9.419 15.669C9.419 13.951 11.003 12.587 12.674 13.03V9.218C8.876 8.871 5.599 11.947 5.599 15.669C5.599 19.28 8.636 22 12.146 22C15.86 22 19.026 18.778 19.026 15.669V9.093C20.0853 9.962 21.3807 10.4329 22.725 10.437V6.937C22.725 6.937 20.78 7.046 19.321 5.562Z" fill="none" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </a>
+          {% endif %}
+          {% if section.settings.instagram_link != blank %}
+            <a href="{{ section.settings.instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon mx-2">
+              <svg width="{{ section.settings.social_icon_size }}" height="{{ section.settings.social_icon_size }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1" fill="none"/>
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1" fill="none"/>
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
     {% if section.settings.enable_menu %}
       <div class="menu-row" style="margin-bottom: {{ section.settings.spacing_between_rows }}px;">
         <nav class="footer-menu">
@@ -51,6 +74,10 @@
     text-align: center;
   }
   
+  .social-icon {
+    color: oklab(0.41233 -0.00633241 -0.0270027);
+  }
+  
   @media (min-width: 768px) {
     .footer-menu-link {
       font-size: {{ section.settings.menu_text_size_desktop }}px;
@@ -66,6 +93,37 @@
 {
   "name": "Footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_social",
+      "label": "Mostra icone social",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "tiktok_link",
+      "label": "TikTok",
+      "info": "Link profilo TikTok"
+    },
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Instagram",
+      "info": "Link profilo Instagram"
+    },
+    {
+      "type": "range",
+      "id": "social_icon_size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "label": "Dimensione icone social",
+      "default": 24
+    },
     {
       "type": "header",
       "content": "Contenuti"
