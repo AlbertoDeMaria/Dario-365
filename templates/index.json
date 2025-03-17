@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "media_type": "video",
-            "video_html": "<video id=\"background-video\" loop=\"\" style=\"margin-bottom:-11px;\" autoplay=\"\" muted=\"\" playsinline=\"\" poster=\"https://cdn.shopify.com/s/files/1/0774/8671/9318/files/Frame_Luca_OMT_video_6.jpg?v=1699283721\" preload=\"auto\" src=\"https://cdn.shopify.com/videos/c/o/v/8afb71927f97410aa3601316a374683d.mp4\" width=\"100%\">\n</video>"
+            "video_html": "<video id=\"background-video\" loop=\"\" style=\"margin-bottom:-11px;\" autoplay=\"\" playsinline=\"\" poster=\"https://cdn.shopify.com/s/files/1/0774/8671/9318/files/Frame_Luca_OMT_video_6.jpg?v=1699283721\" preload=\"auto\" src=\"https://cdn.shopify.com/videos/c/o/v/8afb71927f97410aa3601316a374683d.mp4\" width=\"100%\">\n</video>"
           }
         }
       },
