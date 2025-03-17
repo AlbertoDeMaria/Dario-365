@@ -28,9 +28,9 @@
     "product_grid_9XKMfN": {
       "type": "product-grid",
       "settings": {
-        "title": "I nostri prodotti",
-        "collection": "",
-        "product_limit": 8
+        "title": "",
+        "collection": "frontpage",
+        "product_limit": 12
       }
     },
     "footer_EJnmpq": {
