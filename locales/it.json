@@ -29,7 +29,39 @@
         "name": "Barra di Annuncio",
         "category": "Header"
       }
-    }
+    },
+    "fullwidth-image": {
+      "settings": {
+        "image": "Immagine",
+        "desktop_height": "Altezza desktop",
+        "mobile_height": "Altezza mobile",
+        "image_position": "Posizione immagine",
+        "heading": "Titolo",
+        "heading_size": "Dimensione titolo",
+        "heading_weight": "Peso titolo",
+        "heading_color": "Colore titolo",
+        "text": "Testo",
+        "text_size": "Dimensione testo",
+        "text_color": "Colore testo",
+        "text_align": "Allineamento testo",
+        "content_position": "Posizione contenuto",
+        "content_padding": "Padding contenuto",
+        "overlay_color": "Colore overlay",
+        "overlay_opacity": "Opacità overlay",
+        "button_text": "Testo pulsante 1",
+        "button_link": "Link pulsante 1",
+        "button_text_2": "Testo pulsante 2",
+        "button_link_2": "Link pulsante 2",
+        "button_padding_x": "Padding orizzontale pulsanti",
+        "button_padding_y": "Padding verticale pulsanti",
+        "button_text_size": "Dimensione testo pulsanti",
+        "button_text_color": "Colore testo pulsanti",
+        "button_border_color": "Colore bordo pulsanti",
+        "button_border_width": "Spessore bordo pulsanti",
+        "buttons_gap": "Spazio tra pulsanti",
+        "buttons_margin_top": "Margine superiore pulsanti"
+      }
+    },
   },
   "products": {
     "product": {

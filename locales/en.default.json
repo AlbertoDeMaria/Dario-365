@@ -29,6 +29,38 @@
         "name": "Announcement Bar",
         "category": "Header"
       }
+    },
+    "fullwidth-image": {
+      "settings": {
+        "image": "Image",
+        "desktop_height": "Desktop height",
+        "mobile_height": "Mobile height",
+        "image_position": "Image position",
+        "heading": "Heading",
+        "heading_size": "Heading size",
+        "heading_weight": "Heading weight",
+        "heading_color": "Heading color",
+        "text": "Text",
+        "text_size": "Text size",
+        "text_color": "Text color",
+        "text_align": "Text alignment",
+        "content_position": "Content position",
+        "content_padding": "Content padding",
+        "overlay_color": "Overlay color",
+        "overlay_opacity": "Overlay opacity",
+        "button_text": "Button 1 text",
+        "button_link": "Button 1 link",
+        "button_text_2": "Button 2 text",
+        "button_link_2": "Button 2 link",
+        "button_padding_x": "Button horizontal padding",
+        "button_padding_y": "Button vertical padding",
+        "button_text_size": "Button text size",
+        "button_text_color": "Button text color",
+        "button_border_color": "Button border color",
+        "button_border_width": "Button border width",
+        "buttons_gap": "Space between buttons",
+        "buttons_margin_top": "Buttons top margin"
+      }
     }
   },
   "products": {

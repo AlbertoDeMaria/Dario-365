@@ -1,0 +1,472 @@
+{% schema %}
+    {
+      "name": "Immagine Full-Width",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Immagine"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Immagine"
+        },
+        {
+          "type": "range",
+          "id": "desktop_height",
+          "label": "Altezza desktop",
+          "min": 300,
+          "max": 800,
+          "step": 10,
+          "default": 500,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "mobile_height",
+          "label": "Altezza mobile",
+          "min": 200,
+          "max": 600,
+          "step": 10,
+          "default": 350,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Posizione immagine",
+          "options": [
+            {
+              "value": "center center",
+              "label": "Centro"
+            },
+            {
+              "value": "top center",
+              "label": "Alto"
+            },
+            {
+              "value": "center bottom",
+              "label": "Basso"
+            },
+            {
+              "value": "center left",
+              "label": "Sinistra"
+            },
+            {
+              "value": "center right",
+              "label": "Destra"
+            }
+          ],
+          "default": "center center"
+        },
+        {
+          "type": "header",
+          "content": "Contenuto"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titolo",
+          "default": "Titolo immagine"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "label": "Dimensione titolo",
+          "min": 16,
+          "max": 72,
+          "step": 2,
+          "default": 36,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "heading_weight",
+          "label": "Peso titolo",
+          "options": [
+            {
+              "value": "font-normal",
+              "label": "Normale"
+            },
+            {
+              "value": "font-medium",
+              "label": "Medio"
+            },
+            {
+              "value": "font-semibold",
+              "label": "Semigrassetto"
+            },
+            {
+              "value": "font-bold",
+              "label": "Grassetto"
+            }
+          ],
+          "default": "font-bold"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Colore titolo",
+          "default": "#ffffff"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Testo",
+          "default": "<p>Testo descrittivo</p>"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Dimensione testo",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Colore testo",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Allineamento testo",
+          "options": [
+            {
+              "value": "text-left",
+              "label": "Sinistra"
+            },
+            {
+              "value": "text-center",
+              "label": "Centro"
+            },
+            {
+              "value": "text-right",
+              "label": "Destra"
+            }
+          ],
+          "default": "text-center"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Posizione contenuto",
+          "options": [
+            {
+              "value": "items-center justify-center",
+              "label": "Centro"
+            },
+            {
+              "value": "items-start justify-center",
+              "label": "Alto centro"
+            },
+            {
+              "value": "items-end justify-center",
+              "label": "Basso centro"
+            },
+            {
+              "value": "items-center justify-start",
+              "label": "Centro sinistra"
+            },
+            {
+              "value": "items-center justify-end",
+              "label": "Centro destra"
+            },
+            {
+              "value": "items-start justify-start",
+              "label": "Alto sinistra"
+            },
+            {
+              "value": "items-start justify-end",
+              "label": "Alto destra"
+            },
+            {
+              "value": "items-end justify-start",
+              "label": "Basso sinistra"
+            },
+            {
+              "value": "items-end justify-end",
+              "label": "Basso destra"
+            }
+          ],
+          "default": "items-center justify-center"
+        },
+        {
+          "type": "range",
+          "id": "content_padding",
+          "label": "Padding contenuto",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 20,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Colore overlay",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Opacità overlay",
+          "min": 0,
+          "max": 90,
+          "step": 5,
+          "default": 30,
+          "unit": "%"
+        },
+        {
+          "type": "header",
+          "content": "Pulsanti"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Testo pulsante 1",
+          "default": "Pulsante 1"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link pulsante 1"
+        },
+        {
+          "type": "text",
+          "id": "button_text_2",
+          "label": "Testo pulsante 2",
+          "default": "Pulsante 2"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Link pulsante 2"
+        },
+        {
+          "type": "range",
+          "id": "button_padding_x",
+          "label": "Padding orizzontale pulsanti",
+          "min": 10,
+          "max": 60,
+          "step": 5,
+          "default": 20,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "button_padding_y",
+          "label": "Padding verticale pulsanti",
+          "min": 5,
+          "max": 30,
+          "step": 1,
+          "default": 10,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "button_text_size",
+          "label": "Dimensione testo pulsanti",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 14,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Colore testo pulsanti",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "Colore bordo pulsanti",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "button_border_width",
+          "label": "Spessore bordo pulsanti",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "buttons_gap",
+          "label": "Spazio tra pulsanti",
+          "min": 10,
+          "max": 60,
+          "step": 5,
+          "default": 20,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "buttons_margin_top",
+          "label": "Margine superiore pulsanti",
+          "min": 10,
+          "max": 60,
+          "step": 5,
+          "default": 20,
+          "unit": "px"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Immagine Full-Width",
+          "category": "Immagine"
+        }
+      ]
+    }
+    {% endschema %}
+    
+    <style>
+      .fullwidth-image-section {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+      
+      .fullwidth-image-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: {{ section.settings.image_position }};
+      }
+      
+      .fullwidth-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: {{ section.settings.overlay_color }};
+        opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+      }
+      
+      .fullwidth-content-wrapper {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      
+      .fullwidth-content {
+        padding: {{ section.settings.content_padding }}px;
+        max-width: 800px;
+      }
+      
+      .fullwidth-heading {
+        font-size: {{ section.settings.heading_size }}px;
+        color: {{ section.settings.heading_color }};
+        margin-bottom: 15px;
+      }
+      
+      .fullwidth-text {
+        font-size: {{ section.settings.text_size }}px;
+        color: {{ section.settings.text_color }};
+      }
+      
+      .fullwidth-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: {{ section.settings.buttons_gap }}px;
+        margin-top: {{ section.settings.buttons_margin_top }}px;
+      }
+      
+      .fullwidth-button {
+        display: inline-block;
+        padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px;
+        font-size: {{ section.settings.button_text_size }}px;
+        color: {{ section.settings.button_text_color }};
+        border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
+        background-color: transparent;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      
+      .fullwidth-button:hover {
+        background-color: {{ section.settings.button_text_color }};
+        color: {{ section.settings.overlay_color }};
+      }
+      
+      @media screen and (max-width: 749px) {
+        .fullwidth-image-section {
+          height: {{ section.settings.mobile_height }}px;
+        }
+        
+        .fullwidth-heading {
+          font-size: calc({{ section.settings.heading_size }}px * 0.8);
+        }
+        
+        .fullwidth-text {
+          font-size: calc({{ section.settings.text_size }}px * 0.9);
+        }
+        
+        .fullwidth-buttons {
+          justify-content: center;
+        }
+      }
+      
+      @media screen and (min-width: 750px) {
+        .fullwidth-image-section {
+          height: {{ section.settings.desktop_height }}px;
+        }
+      }
+    </style>
+    
+    <div class="fullwidth-image-section">
+      {% if section.settings.image != blank %}
+        <img 
+          src="{{ section.settings.image | img_url: 'master' }}" 
+          alt="{{ section.settings.heading | escape }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          loading="lazy"
+          class="fullwidth-image-bg"
+        >
+      {% else %}
+        <div class="fullwidth-image-bg" style="background-color: #303030;"></div>
+      {% endif %}
+      
+      <div class="fullwidth-overlay"></div>
+      
+      <div class="fullwidth-content-wrapper {{ section.settings.content_position }}">
+        <div class="fullwidth-content {{ section.settings.text_align }}">
+          {% if section.settings.heading != blank %}
+            <h2 class="fullwidth-heading {{ section.settings.heading_weight }}">{{ section.settings.heading }}</h2>
+          {% endif %}
+          
+          {% if section.settings.text != blank %}
+            <div class="fullwidth-text">{{ section.settings.text }}</div>
+          {% endif %}
+          
+          <div class="fullwidth-buttons">
+            {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+              <a href="{{ section.settings.button_link }}" class="fullwidth-button">
+                {{ section.settings.button_text }}
+              </a>
+            {% endif %}
+            
+            {% if section.settings.button_text_2 != blank and section.settings.button_link_2 != blank %}
+              <a href="{{ section.settings.button_link_2 }}" class="fullwidth-button">
+                {{ section.settings.button_text_2 }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
