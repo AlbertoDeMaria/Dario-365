@@ -35,7 +35,7 @@
         "footer_text_size_mobile": 12,
         "footer_text_size_desktop": 14,
         "footer_font_weight": 400,
-        "menu_text_size_mobile": 16,
+        "menu_text_size_mobile": 12,
         "menu_text_size_desktop": 16,
         "menu_font_weight": 500,
         "show_payment_icons": true,
