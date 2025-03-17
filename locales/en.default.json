@@ -30,5 +30,10 @@
         "category": "Header"
       }
     }
+  },
+  "products": {
+    "product": {
+      "product_title": "Product title"
+    }
   }
 }
