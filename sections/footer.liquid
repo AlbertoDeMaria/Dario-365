@@ -4,46 +4,40 @@
   assign show_currency_selector = section.settings.show_currency_selector
 -%}
 
-<footer class="bg-black flex justify-center text-white py-4">
+<footer class="bg-black text-white py-4">
   <div class="container mx-auto px-4">
-    <div class="flex flex-wrap items-center justify-center">
-      {% if section.settings.footer_text != blank %}
-        <div class="footer-text font-montserrat text-[14px] leading-[20px] font-medium text-center">
-          {{ section.settings.footer_text }}
-        </div>
-      {% endif %}
-      
-      {% if section.settings.footer_text != blank and section.settings.enable_menu %}
-        <span class="mx-2 font-montserrat text-[14px] leading-[20px] font-medium">-</span>
-      {% endif %}
-      
-      {% if section.settings.enable_menu %}
+    {% if section.settings.enable_menu %}
+      <div class="menu-row mb-3">
         <nav class="footer-menu">
           <ul class="flex flex-wrap items-center justify-center">
             {% for link in section.settings.menu.links %}
               <li>
-                <a href="{{ link.url }}" class="font-montserrat text-[14px] leading-[20px] font-medium hover:underline">
+                <a href="{{ link.url }}" class="font-montserrat text-[{{ section.settings.menu_text_size_mobile }}px] md:text-[{{ section.settings.menu_text_size_desktop }}px] font-[{{ section.settings.menu_font_weight }}] leading-[20px] hover:underline">
                   {{ link.title }}
                 </a>
                 {% unless forloop.last %}
-                  <span class="mx-2 font-montserrat text-[14px] leading-[20px] font-medium">-</span>
+                  <span class="mx-2 font-montserrat text-[{{ section.settings.menu_text_size_mobile }}px] md:text-[{{ section.settings.menu_text_size_desktop }}px] font-[{{ section.settings.menu_font_weight }}] leading-[20px]">-</span>
                 {% endunless %}
               </li>
             {% endfor %}
           </ul>
         </nav>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
+    
+    {% if section.settings.footer_text != blank %}
+      <div class="text-row">
+        <div class="footer-text font-montserrat text-[{{ section.settings.footer_text_size_mobile }}px] md:text-[{{ section.settings.footer_text_size_desktop }}px] font-[{{ section.settings.footer_font_weight }}] leading-[20px] text-center">
+          {{ section.settings.footer_text }}
+        </div>
+      </div>
+    {% endif %}
   </div>
 </footer>
 
 <style>
   .font-montserrat {
     font-family: 'Montserrat', sans-serif;
-  }
-  
-  .font-medium {
-    font-weight: 500;
   }
   
   .footer-text, .footer-menu {
@@ -55,6 +49,10 @@
 {
   "name": "Footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "Contenuti"
+    },
     {
       "type": "text",
       "id": "footer_text",
@@ -72,6 +70,72 @@
       "id": "menu",
       "label": "Menu footer",
       "default": "footer"
+    },
+    {
+      "type": "header",
+      "content": "Stile testo copyright"
+    },
+    {
+      "type": "range",
+      "id": "footer_text_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "label": "Dimensione testo mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "footer_text_size_desktop",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "label": "Dimensione testo desktop",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "footer_font_weight",
+      "min": 300,
+      "max": 700,
+      "step": 100,
+      "label": "Peso testo copyright",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Stile testo menu"
+    },
+    {
+      "type": "range",
+      "id": "menu_text_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "label": "Dimensione testo menu mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "menu_text_size_desktop",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "label": "Dimensione testo menu desktop",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "menu_font_weight",
+      "min": 300,
+      "max": 700,
+      "step": 100,
+      "label": "Peso testo menu",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Opzioni aggiuntive"
     },
     {
       "type": "checkbox",
