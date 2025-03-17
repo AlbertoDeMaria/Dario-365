@@ -46,12 +46,12 @@
         "title": "",
         "collection": "frontpage",
         "product_limit": 16,
-        "padding_top_mobile": 20,
-        "padding_bottom_mobile": 100,
+        "padding_top_mobile": 45,
+        "padding_bottom_mobile": 65,
         "padding_left_mobile": 20,
         "padding_right_mobile": 20,
         "padding_top_desktop": 100,
-        "padding_bottom_desktop": 100,
+        "padding_bottom_desktop": 25,
         "padding_left_desktop": 20,
         "padding_right_desktop": 20
       }
