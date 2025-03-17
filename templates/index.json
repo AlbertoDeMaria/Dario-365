@@ -59,6 +59,7 @@
     "img_full_width_84PKyJ": {
       "type": "img-full-width",
       "settings": {
+        "image": "shopify://shop_images/WhatsApp_Image_2022-10-21_at_19.17.26-3.jpg",
         "desktop_height": 500,
         "mobile_height": 350,
         "image_position": "center center",
@@ -73,7 +74,7 @@
         "content_position": "items-center justify-center",
         "content_padding": 20,
         "overlay_color": "#000000",
-        "overlay_opacity": 10,
+        "overlay_opacity": 25,
         "button_text": "Instagram",
         "button_link": "https://www.instagram.com/project365.it/tagged/",
         "button_text_2": "TikTok",
