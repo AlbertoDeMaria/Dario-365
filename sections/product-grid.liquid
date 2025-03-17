@@ -27,7 +27,6 @@ sections/product-grid.liquid
     padding-bottom: 100%; /* 1:1 Aspect Ratio */
     overflow: hidden;
     background-color: #f3f3f3;
-    border-radius: 4px;
   }
   
   .product-image {
@@ -46,42 +45,54 @@ sections/product-grid.liquid
   
   .product-title {
     margin-top: 8px;
-    text-align: center;
+    text-align: left;
     font-size: 14px;
+  }
+  
+  .product-price {
+    font-size: 12px;
+    text-align: left;
+    margin-top: 2px;
+  }
+  
+  .product-compare-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 5px;
+  }
+  
+  .product-sale-price {
+    color: #e53e3e;
   }
   
   @media (min-width: 768px) {
     .product-title {
       font-size: 16px;
     }
+    
+    .product-price {
+      font-size: 14px;
+    }
   }
 </style>
 
 <section class="product-grid" 
   style="
-    padding-top: {{ section.settings.padding_top_mobile }}px;
-    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
-    padding-left: {{ section.settings.padding_left_mobile }}px;
-    padding-right: {{ section.settings.padding_right_mobile }}px;
+    padding: {{ section.settings.padding_top_mobile }}px {{ section.settings.padding_right_mobile }}px {{ section.settings.padding_bottom_mobile }}px {{ section.settings.padding_left_mobile }}px;
     {% if request.design_mode %}max-width: 100%;{% endif %}
+    {% if request.design_mode != true %}
+      @media (min-width: 1024px) {
+        padding: {{ section.settings.padding_top_desktop }}px {{ section.settings.padding_right_desktop }}px {{ section.settings.padding_bottom_desktop }}px {{ section.settings.padding_left_desktop }}px;
+      }
+    {% endif %}
   ">
   
   <div class="container mx-auto" style="max-width: 100%;">
     {% if section.settings.title != blank %}
-      <h2 class="text-2xl font-bold mb-6 text-center">{{ section.settings.title }}</h2>
+      <h2 class="text-2xl font-bold mb-6 text-left">{{ section.settings.title }}</h2>
     {% endif %}
     
-    <div class="product-grid-container" 
-      style="{% if request.design_mode %}max-width: 100%;{% endif %}
-      {% if request.design_mode != true %}
-        @media (min-width: 1024px) {
-          padding-top: {{ section.settings.padding_top_desktop }}px;
-          padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
-          padding-left: {{ section.settings.padding_left_desktop }}px;
-          padding-right: {{ section.settings.padding_right_desktop }}px;
-        }
-      {% endif %}
-      ">
+    <div class="product-grid-container" style="{% if request.design_mode %}max-width: 100%;{% endif %}">
       
       {%- assign collection = collections[section.settings.collection] -%}
       {%- for product in collection.products limit: section.settings.product_limit -%}
@@ -106,6 +117,14 @@ sections/product-grid.liquid
             <h3 class="product-title font-medium">
               {{ product.title }}
             </h3>
+            <div class="product-price">
+              {%- if product.compare_at_price > product.price -%}
+                <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+                <span class="product-sale-price">{{ product.price | money }}</span>
+              {%- else -%}
+                <span>{{ product.price | money }}</span>
+              {%- endif -%}
+            </div>
           </a>
         </div>
       {%- else -%}
@@ -119,6 +138,9 @@ sections/product-grid.liquid
             <h3 class="product-title font-medium">
               {{ 'products.product.product_title' | t }}
             </h3>
+            <div class="product-price">
+              {{ 'products.product.product_price' | t }}
+            </div>
           </div>
         {%- endfor -%}
       {%- endfor -%}
