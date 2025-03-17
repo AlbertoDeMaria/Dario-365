@@ -29,8 +29,8 @@
           "link": "",
           "background_color": "#0029d6",
           "text_color": "#ffffff",
-          "padding_y_desktop": 8,
-          "padding_y_mobile": 8,
+          "padding_y_desktop": 10,
+          "padding_y_mobile": 20,
           "text_size_desktop": 13,
           "text_size_mobile": 10
         }
