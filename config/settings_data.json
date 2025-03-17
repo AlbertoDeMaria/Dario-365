@@ -21,6 +21,19 @@
           "logo_width_mobile": 80,
           "main_menu": "main-menu"
         }
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "text": "Codice 365",
+          "link": "",
+          "background_color": "#0029d6",
+          "text_color": "#ffffff",
+          "padding_y_desktop": 8,
+          "padding_y_mobile": 8,
+          "text_size_desktop": 14,
+          "text_size_mobile": 14
+        }
       }
     },
     "content_for_index": []
