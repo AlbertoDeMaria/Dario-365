@@ -14,7 +14,11 @@
       "blocks": {
         "slide-3": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "media_type": "video",
+            "video_url": "https://www.youtube.com/shorts/SLJKTF4Wufw",
+            "video_alt": "Video slider"
+          }
         }
       },
       "block_order": [
