@@ -27,7 +27,6 @@
     },
     "product_grid_9XKMfN": {
       "type": "product-grid",
-      "disabled": true,
       "settings": {
         "title": "",
         "collection": "frontpage",
