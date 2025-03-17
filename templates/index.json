@@ -28,7 +28,7 @@
     "product_grid_9XKMfN": {
       "type": "product-grid",
       "settings": {
-        "title": "Prodotti",
+        "title": "",
         "collection": "frontpage",
         "product_limit": 16,
         "padding_top_mobile": 20,
