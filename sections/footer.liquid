@@ -1,0 +1,90 @@
+{%- liquid
+  assign show_payment_icons = section.settings.show_payment_icons
+  assign show_locale_selector = section.settings.show_locale_selector
+  assign show_currency_selector = section.settings.show_currency_selector
+-%}
+
+<footer class="bg-black text-white text-xs py-4">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap items-center justify-center md:justify-between">
+      {% if section.settings.footer_text != blank %}
+        <div class="footer-text">
+          {{ section.settings.footer_text }}
+        </div>
+      {% endif %}
+      
+      {% if section.settings.footer_text != blank and section.settings.enable_menu %}
+        <span class="mx-2">-</span>
+      {% endif %}
+      
+      {% if section.settings.enable_menu %}
+        <nav class="footer-menu">
+          <ul class="flex flex-wrap items-center">
+            {% for link in section.settings.menu.links %}
+              <li>
+                <a href="{{ link.url }}" class="hover:underline">
+                  {{ link.title }}
+                </a>
+                {% unless forloop.last %}
+                  <span class="mx-2">-</span>
+                {% endunless %}
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Testo footer",
+      "default": "© 2025, Store One More Time BUG 301 SRL, P.I. 12690450965"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_menu",
+      "label": "Abilita menu",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu footer",
+      "default": "footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Mostra metodi di pagamento",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Mostra selettore lingua",
+      "default": false,
+      "info": "Per mostrare i selettori di lingua, aggiungi le lingue nel tuo pannello di amministrazione."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_selector",
+      "label": "Mostra selettore valuta",
+      "default": false,
+      "info": "Per mostrare i selettori di valuta, aggiungi le valute nel tuo pannello di amministrazione."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}
