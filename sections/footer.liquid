@@ -4,29 +4,29 @@
   assign show_currency_selector = section.settings.show_currency_selector
 -%}
 
-<footer class="bg-black text-white text-xs py-4">
+<footer class="bg-black text-white py-4">
   <div class="container mx-auto px-4">
-    <div class="flex flex-wrap items-center justify-center md:justify-between">
+    <div class="flex flex-wrap items-center justify-center">
       {% if section.settings.footer_text != blank %}
-        <div class="footer-text">
+        <div class="footer-text font-montserrat text-[14px] leading-[20px] font-medium text-center">
           {{ section.settings.footer_text }}
         </div>
       {% endif %}
       
       {% if section.settings.footer_text != blank and section.settings.enable_menu %}
-        <span class="mx-2"> - </span>
+        <span class="mx-2 font-montserrat text-[14px] leading-[20px] font-medium">-</span>
       {% endif %}
       
       {% if section.settings.enable_menu %}
         <nav class="footer-menu">
-          <ul class="flex flex-wrap items-center">
+          <ul class="flex flex-wrap items-center justify-center">
             {% for link in section.settings.menu.links %}
               <li>
-                <a href="{{ link.url }}" class="hover:underline">
+                <a href="{{ link.url }}" class="font-montserrat text-[14px] leading-[20px] font-medium hover:underline">
                   {{ link.title }}
                 </a>
                 {% unless forloop.last %}
-                  <span class="mx-2">-</span>
+                  <span class="mx-2 font-montserrat text-[14px] leading-[20px] font-medium">-</span>
                 {% endunless %}
               </li>
             {% endfor %}
@@ -36,6 +36,20 @@
     </div>
   </div>
 </footer>
+
+<style>
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  .footer-text, .footer-menu {
+    color: oklab(0.41233 -0.00633241 -0.0270027);
+  }
+</style>
 
 {% schema %}
 {
