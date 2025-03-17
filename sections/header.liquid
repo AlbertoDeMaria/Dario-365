@@ -81,7 +81,7 @@
 
   <div id="mobile-menu" class="mobile-menu hidden pt-4">
     {% if section.settings.main_menu != blank %}
-      <ul class="space-y-4 pb-4">
+      <ul class="text-center pb-4">
         {% for link in linklists[section.settings.main_menu].links %}
           <li>
             <a href="{{ link.url }}" class="block py-2 text-lg font-medium">
