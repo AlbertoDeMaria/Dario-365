@@ -25,6 +25,22 @@
       ],
       "settings": {}
     },
+    "product_grid_eTgqFJ": {
+      "type": "product-grid",
+      "settings": {
+        "title": "",
+        "collection": "frontpage",
+        "product_limit": 16,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "padding_left_mobile": 15,
+        "padding_right_mobile": 15,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_left_desktop": 20,
+        "padding_right_desktop": 20
+      }
+    },
     "footer_EJnmpq": {
       "type": "footer",
       "settings": {
@@ -51,6 +67,7 @@
   },
   "order": [
     "full-screen-slider",
+    "product_grid_eTgqFJ",
     "footer_EJnmpq"
   ]
 }
