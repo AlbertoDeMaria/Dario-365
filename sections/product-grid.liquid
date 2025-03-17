@@ -2,13 +2,29 @@
 sections/product-grid.liquid
 {%- endcomment -%}
 
-<section class="product-grid py-8">
-  <div class="container mx-auto px-4">
+<section class="product-grid" 
+  style="
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-left: {{ section.settings.padding_left_mobile }}px;
+    padding-right: {{ section.settings.padding_right_mobile }}px;
+  "
+>
+  <div class="container mx-auto">
     {% if section.settings.title != blank %}
       <h2 class="text-2xl font-bold mb-6 text-center">{{ section.settings.title }}</h2>
     {% endif %}
     
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4"
+      style="
+        @media (min-width: 1024px) {
+          padding-top: {{ section.settings.padding_top_desktop }}px;
+          padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+          padding-left: {{ section.settings.padding_left_desktop }}px;
+          padding-right: {{ section.settings.padding_right_desktop }}px;
+        }
+      "
+    >
       {%- assign collection = collections[section.settings.collection] -%}
       {%- for product in collection.products limit: section.settings.product_limit -%}
         <div class="product-card">
@@ -71,6 +87,86 @@ sections/product-grid.liquid
       "step": 4,
       "default": 8,
       "label": "Numero massimo di prodotti"
+    },
+    {
+      "type": "header",
+      "content": "Padding Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "label": "Padding superiore mobile (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "label": "Padding inferiore mobile (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 15,
+      "label": "Padding sinistro mobile (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 15,
+      "label": "Padding destro mobile (px)"
+    },
+    {
+      "type": "header",
+      "content": "Padding Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "label": "Padding superiore desktop (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "label": "Padding inferiore desktop (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "label": "Padding sinistro desktop (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "label": "Padding destro desktop (px)"
     }
   ],
   "presets": [
