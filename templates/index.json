@@ -25,6 +25,14 @@
       ],
       "settings": {}
     },
+    "product_grid_9XKMfN": {
+      "type": "product-grid",
+      "settings": {
+        "title": "I nostri prodotti",
+        "collection": "",
+        "product_limit": 8
+      }
+    },
     "footer_EJnmpq": {
       "type": "footer",
       "settings": {
@@ -47,6 +55,7 @@
   },
   "order": [
     "full-screen-slider",
+    "product_grid_9XKMfN",
     "footer_EJnmpq"
   ]
 }
