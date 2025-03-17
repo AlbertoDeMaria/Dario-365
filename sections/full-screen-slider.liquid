@@ -1,8 +1,8 @@
-<div class="slider-wrapper relative w-full h-screen overflow-hidden" style="z-index: -1;">
+<div class="slider-wrapper absolute top-0 left-0 w-full h-screen overflow-hidden" style="z-index: -1;">
   <div class="slides-container h-full relative" id="slider-container">
     {% for block in section.blocks %}
       {% if block.type == 'slide' %}
-        <div class="slide w-full h-full inset-0 opacity-0 transition-opacity duration-1000 ease-in-out {% if forloop.first %}active opacity-100{% endif %}" 
+        <div class="slide w-full h-full absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out {% if forloop.first %}active opacity-100{% endif %}" 
              data-index="{{ forloop.index0 }}" 
              {{ block.shopify_attributes }}>
           {% if block.settings.media_type == 'image' %}
