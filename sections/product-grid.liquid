@@ -98,7 +98,7 @@ sections/product-grid.liquid
       {%- for product in collection.products limit: section.settings.product_limit -%}
         <div class="product-card">
           <a href="{{ product.url }}" class="block">
-            <div class="product-image-container">
+            <div class="product-image-container bg-white">
               {%- if product.featured_media -%}
                 <img
                   src="{{ product.featured_media | img_url: 'medium' }}"

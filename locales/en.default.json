@@ -33,7 +33,8 @@
   },
   "products": {
     "product": {
-      "product_title": "Product title"
+      "product_title": "Product title",
+      "product_price": "Product price"
     }
   }
 }
