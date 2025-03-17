@@ -14,13 +14,12 @@
         "type": "header",
         "settings": {
           "menu_icon": "shopify://shop_images/hmo7g2n85zrm8caintf.svg",
-          "menu_icon_width_desktop": 24,
-          "menu_icon_width_mobile": 20,
+          "menu_icon_width_desktop": 18,
+          "menu_icon_width_mobile": 18,
           "logo": "shopify://shop_images/logo.svg",
           "logo_width_desktop": 100,
-          "logo_width_mobile": 90,
-          "hide_cart_mobile": false,
-          "hide_account_mobile": false
+          "logo_width_mobile": 80,
+          "main_menu": "main-menu"
         }
       }
     },
