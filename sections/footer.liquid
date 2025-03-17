@@ -11,14 +11,9 @@
         <nav class="footer-menu">
           <ul class="flex flex-wrap items-center justify-center">
             {% for link in section.settings.menu.links %}
-              <li>
+              <li {% unless forloop.last %}style="margin-right: {{ section.settings.link_spacing }}px;"{% endunless %}>
                 <a href="{{ link.url }}" 
-                   style="font-family: 'Montserrat', sans-serif; 
-                          font-size: {{ section.settings.menu_text_size_mobile }}px;
-                          font-weight: {{ section.settings.menu_font_weight }};
-                          line-height: 20px;
-                          color: oklab(0.41233 -0.00633241 -0.0270027);"
-                   class="hover:underline md:text-custom-menu-desktop">
+                   class="footer-menu-link hover:underline">
                   {{ link.title }}
                 </a>
               </li>
@@ -30,13 +25,7 @@
     
     {% if section.settings.footer_text != blank %}
       <div class="text-row">
-        <div style="font-family: 'Montserrat', sans-serif; 
-                    font-size: {{ section.settings.footer_text_size_mobile }}px;
-                    font-weight: {{ section.settings.footer_font_weight }};
-                    line-height: 20px;
-                    color: oklab(0.41233 -0.00633241 -0.0270027);
-                    text-align: center;"
-             class="footer-text md:text-custom-footer-desktop">
+        <div class="footer-text">
           {{ section.settings.footer_text }}
         </div>
       </div>
@@ -45,12 +34,29 @@
 </footer>
 
 <style>
+  .footer-menu-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.menu_text_size_mobile }}px;
+    font-weight: {{ section.settings.menu_font_weight }};
+    line-height: 20px;
+    color: oklab(0.41233 -0.00633241 -0.0270027);
+  }
+  
+  .footer-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.footer_text_size_mobile }}px;
+    font-weight: {{ section.settings.footer_font_weight }};
+    line-height: 20px;
+    color: oklab(0.41233 -0.00633241 -0.0270027);
+    text-align: center;
+  }
+  
   @media (min-width: 768px) {
-    .md\:text-custom-menu-desktop {
+    .footer-menu-link {
       font-size: {{ section.settings.menu_text_size_desktop }}px;
     }
     
-    .md\:text-custom-footer-desktop {
+    .footer-text {
       font-size: {{ section.settings.footer_text_size_desktop }}px;
     }
   }
@@ -83,6 +89,10 @@
       "default": "footer"
     },
     {
+      "type": "header",
+      "content": "Spaziatura"
+    },
+    {
       "type": "range",
       "id": "spacing_between_rows",
       "min": 0,
@@ -90,6 +100,15 @@
       "step": 1,
       "label": "Spazio tra le righe (px)",
       "default": 15
+    },
+    {
+      "type": "range",
+      "id": "link_spacing",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "label": "Spazio tra i link (px)",
+      "default": 16
     },
     {
       "type": "header",
