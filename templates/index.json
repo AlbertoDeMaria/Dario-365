@@ -16,13 +16,7 @@
           "type": "slide",
           "settings": {
             "media_type": "video",
-            "video_html": "<video id=\"background-video\" loop=\"\" style=\"margin-bottom:-11px;\" autoplay=\"\" muted=\"\" playsinline=\"\" preload=\"auto\" src=\"https://cdn.shopify.com/videos/c/o/v/8afb71927f97410aa3601316a374683d.mp4\" width=\"100%\">\n</video>",
-            "show_overlay": false,
-            "overlay_opacity": 0.9,
-            "show_button": false,
-            "button_text": "Vai ai prodotti",
-            "button_link": "shopify://collections",
-            "button_style": "filled"
+            "video_html": "<video id=\"background-video\" loop=\"\" style=\"margin-bottom:-11px;\" autoplay=\"\" muted=\"\" playsinline=\"\" preload=\"auto\" src=\"https://cdn.shopify.com/videos/c/o/v/8afb71927f97410aa3601316a374683d.mp4\" width=\"100%\">\n</video>"
           }
         }
       },
@@ -30,6 +24,18 @@
         "slide-3"
       ],
       "settings": {}
+    },
+    "pulsante_full_QnjpVc": {
+      "type": "pulsante-full",
+      "settings": {
+        "button_text": "VAI AI PRODOTTI",
+        "button_link": "shopify://collections",
+        "background_color": "#ffffff",
+        "button_color": "#0029d6",
+        "text_color": "#ffffff",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
     },
     "footer_EJnmpq": {
       "type": "footer",
@@ -57,6 +63,7 @@
   },
   "order": [
     "full-screen-slider",
+    "pulsante_full_QnjpVc",
     "footer_EJnmpq"
   ]
 }
