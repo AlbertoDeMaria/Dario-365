@@ -17,9 +17,9 @@
           "settings": {
             "media_type": "video",
             "video_html": "<video id=\"background-video\" loop=\"\" style=\"margin-bottom:-11px;\" autoplay=\"\" muted=\"\" playsinline=\"\" preload=\"auto\" src=\"https://cdn.shopify.com/videos/c/o/v/8afb71927f97410aa3601316a374683d.mp4\" width=\"100%\">\n</video>",
-            "show_overlay": true,
-            "overlay_opacity": 0.3,
-            "show_button": true,
+            "show_overlay": false,
+            "overlay_opacity": 0.9,
+            "show_button": false,
             "button_text": "Vai ai prodotti",
             "button_link": "shopify://collections",
             "button_style": "filled"
