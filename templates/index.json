@@ -25,16 +25,20 @@
       ],
       "settings": {}
     },
-    "pulsante_full_QnjpVc": {
-      "type": "pulsante-full",
+    "product_grid_BE9Mz7": {
+      "type": "product-grid",
       "settings": {
-        "button_text": "VAI AI PRODOTTI",
-        "button_link": "shopify://collections",
-        "background_color": "#ffffff",
-        "button_color": "#0029d6",
-        "text_color": "#ffffff",
-        "padding_top": 50,
-        "padding_bottom": 50
+        "title": "",
+        "collection": "frontpage",
+        "product_limit": 16,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "padding_left_mobile": 15,
+        "padding_right_mobile": 15,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_left_desktop": 20,
+        "padding_right_desktop": 20
       }
     },
     "footer_EJnmpq": {
@@ -63,7 +67,7 @@
   },
   "order": [
     "full-screen-slider",
-    "pulsante_full_QnjpVc",
+    "product_grid_BE9Mz7",
     "footer_EJnmpq"
   ]
 }
