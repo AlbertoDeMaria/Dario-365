@@ -1,0 +1,120 @@
+{% schema %}
+    {
+      "name": "Pulsante Full-width",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Testo pulsante",
+          "default": "Clicca qui"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link pulsante"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Colore sfondo",
+          "default": "#f4f4f4"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Colore pulsante",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Colore testo",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding superiore",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding inferiore",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 50
+        }
+      ],
+      "presets": [
+        {
+          "name": "Pulsante Full-width",
+          "category": "Pulsanti"
+        }
+      ]
+    }
+    {% endschema %}
+    
+    <style>
+      .section-full-width-button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .primary-button {
+        display: inline-block;
+        padding: 15px 30px;
+        font-weight: 600;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+    
+      .primary-button:hover {
+        background-color: transparent !important;
+        border-color: var(--button-color) !important;
+        color: var(--button-color) !important;
+      }
+    </style>
+    
+    <section 
+      class="section-full-width-button"
+      style="
+        background-color: {{ section.settings.background_color }};
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      "
+    >
+      <div class="button-container">
+        {% assign button_text = section.settings.button_text %}
+        {% assign button_url = section.settings.button_link %}
+        
+        {% if button_text != blank and button_url != blank %}
+          <style>
+            .primary-button-{{ section.id }} {
+              --button-color: {{ section.settings.button_color }};
+              background-color: {{ section.settings.button_color }};
+              color: {{ section.settings.text_color }};
+              border-color: {{ section.settings.button_color }};
+            }
+          </style>
+          
+          <a href="{{ button_url }}" class="primary-button primary-button-{{ section.id }}">
+            {{ button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </section>
