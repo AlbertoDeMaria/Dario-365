@@ -16,7 +16,11 @@
           "type": "slide",
           "settings": {
             "media_type": "video",
-            "video_html": "<video id=\"background-video\" loop=\"\" style=\"margin-bottom:-11px;\" autoplay=\"\" muted=\"\" playsinline=\"\" preload=\"auto\" src=\"https://cdn.shopify.com/videos/c/o/v/8afb71927f97410aa3601316a374683d.mp4\" width=\"100%\">\n</video>"
+            "video_html": "<video id=\"background-video\" loop=\"\" style=\"margin-bottom:-11px;\" autoplay=\"\" muted=\"\" playsinline=\"\" preload=\"auto\" src=\"https://cdn.shopify.com/videos/c/o/v/8afb71927f97410aa3601316a374683d.mp4\" width=\"100%\">\n</video>",
+            "show_button": true,
+            "button_text": "Scopri di più",
+            "button_link": "shopify://collections",
+            "button_style": "outline"
           }
         }
       },
